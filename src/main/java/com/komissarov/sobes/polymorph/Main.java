@@ -14,9 +14,9 @@ public class Main {
 
         Random rnd = new Random();
         List<Shape> shapes = Stream
-                .generate(() -> 0)
+                .generate(() -> rnd.nextInt(shapeCreators.size()))
                 .limit(100)
-                .map(i -> shapeCreators.get(rnd.nextInt(shapeCreators.size())).get())
+                .map(i -> shapeCreators.get(i).get())
                 .collect(Collectors.toList());
 
         for (Shape shape : shapes) {
