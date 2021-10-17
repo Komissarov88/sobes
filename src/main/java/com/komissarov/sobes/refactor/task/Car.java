@@ -1,12 +1,12 @@
 package com.komissarov.sobes.refactor.task;
 
-abstract class Car {
-    public Engine engine;
+abstract class Car implements Movable, Stoppable{
+    private Engine engine;
     private String color;
     private String name;
 
 
-    protected void start() {
+    public void start() {
         System.out.println("Car starting");
     }
 

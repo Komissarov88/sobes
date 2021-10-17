@@ -1,9 +1,9 @@
 package com.komissarov.sobes.refactor.task;
 
-class LightWeightCar extends Car implements Moveable{
+class LightWeightCar extends Car {
 
     @Override
-    void open() {
+    public void open() {
         System.out.println("Car is open");
     }
 
@@ -12,4 +12,8 @@ class LightWeightCar extends Car implements Moveable{
         System.out.println("Car is moving");
     }
 
+    @Override
+    public void stop() {
+        System.out.println("Car is stop");
+    }
 }
