@@ -40,7 +40,8 @@ from movies as f
          join (select row_number,
                       start_time
                from movies) as s
-              on f.row_number = s.row_number - 1;
+              on f.row_number = s.row_number - 1
+order by break desc;
 
 
 -- список фильмов, для каждого — с указанием общего числа посетителей за все время,
