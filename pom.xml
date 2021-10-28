@@ -7,7 +7,29 @@
     <groupId>com.komissarov</groupId>
     <artifactId>sobes</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <dependencies>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.6.0.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.23</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.22</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.oblac</groupId>
+            <artifactId>nomen-est-omen</artifactId>
+            <version>2.1.0</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -19,6 +41,39 @@
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <database.driver>org.postgresql.Driver</database.driver>
+        <database.url>jdbc:postgresql://localhost:5432/pizzastore</database.url>
+        <database.username>postgres</database.username>
+        <database.password>postgrespass</database.password>
     </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>7.0.4</version>
+                <configuration>
+                    <driver>${database.driver}</driver>
+                    <url>${database.url}</url>
+                    <user>${database.username}</user>
+                    <password>${database.password}</password>
+                    <cleanOnValidationError>true</cleanOnValidationError>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>flyway database migration</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                            <goal>baseline</goal>
+                            <goal>migrate</goal>
+                            <goal>info</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
